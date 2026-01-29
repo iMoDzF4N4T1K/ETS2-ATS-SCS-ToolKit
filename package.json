@@ -1,0 +1,207 @@
+{
+  "name": "scs-toolkit-dev",
+  "displayName": "SCS Toolkit (DEV)",
+  "description": "ETS2/ATS modding toolkit: SII/SUI/MAT syntax highlighting, completion, hovers, links & diagnostics.",
+  "version": "0.2.9-dev.15",
+  "publisher": "your-name",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-name/ets2-scs-tools"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters",
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "scs",
+        "aliases": [
+          "SCS Script",
+          "scs",
+          "sii",
+          "sui",
+          "mat"
+        ],
+        "extensions": [
+          ".sii",
+          ".sui",
+          ".mat",
+          ".tobj",
+          ".pmd",
+          ".pma"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "scsTools.detectEts2Path",
+        "title": "SCS Toolkit: Detect ETS2 Install Path"
+      },
+      {
+        "command": "scsTools.openResource",
+        "title": "SCS Toolkit: Open Referenced Resource",
+        "category": "SCS Toolkit"
+      },
+      {
+        "command": "scsTools.formatDocument",
+        "title": "SCS Toolkit: Format Document",
+        "category": "SCS Toolkit"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "scs",
+        "scopeName": "source.scs",
+        "path": "./syntaxes/scs.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "ETS2/ATS SCS Tools",
+      "properties": {
+        "scsTools.ets2Path": {
+          "type": "string",
+          "default": "",
+          "description": "Optional. Absolute path to your Euro Truck Simulator 2 installation (folder that contains bin/, def/, etc.)."
+        },
+        "scsTools.modRoot": {
+          "type": "string",
+          "default": "${workspaceFolder}",
+          "description": "Root folder of your mod. Used to resolve paths in @include / model/material references. Defaults to the current workspace root."
+        },
+        "scsTools.enableDiagnostics": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn when a key before ':' is not recognized as a known SCS keyword."
+        },
+        "scsTools.enableFormatter": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the basic formatter for .sii/.sui/.mat files."
+        },
+        "scsTools.indentSize": {
+          "type": "number",
+          "default": 4,
+          "minimum": 1,
+          "maximum": 8,
+          "description": "Indent size for formatter."
+        },
+        "scsTools.useTabs": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use tabs instead of spaces in formatter."
+        },
+        "scsTools.enableColorPicker": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show color swatches & enable color picker for (r,g,b)/(r,g,b,a) tuples and #RRGGBB/#RRGGBBAA hex colors in .sui/.sii/.mat."
+        },
+        "scsTools.enableInlineColorText": {
+          "type": "boolean",
+          "default": false,
+          "description": "Also colorize the RGB(A)/hex text itself (gives an HTML-like feel)."
+        },
+        "scsTools.gameDataPath": {
+          "type": "string",
+          "default": "",
+          "description": "Root folder containing extracted game data (output of extracted game data). Used to make absolute game paths like /material/... clickable."
+        },
+        "scsTools.format.onSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically format SCS Script files on save."
+        },
+        "scsTools.format.alignColons": {
+          "type": "boolean",
+          "default": true,
+          "description": "Align ':' in consecutive key/value lines for better readability."
+        },
+        "scsTools.format.maxEmptyLines": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Maximum number of consecutive empty lines kept by the formatter."
+        },
+        "scsTools.format.trimTrailingWhitespace": {
+          "type": "boolean",
+          "default": true,
+          "description": "Remove trailing spaces/tabs."
+        },
+        "scsTools.format.spaceAfterCommaInTuples": {
+          "type": "boolean",
+          "default": true,
+          "description": "Normalize tuples like (a,b,c) to (a, b, c)."
+        },
+        "scsTools.format.indent": {
+          "type": "string",
+          "default": "\t",
+          "enum": [
+            "\t",
+            "  ",
+            "    "
+          ],
+          "description": "Indent used by the formatter. Default is a tab, matching typical SCS files."
+        }
+      }
+    },
+    "configurationDefaults": {
+      "[scs]": {
+        "editor.largeFileOptimizations": false,
+        "editor.maxTokenizationLineLength": 500000
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint .",
+    "test": "node ./out/test/runTest.js",
+    "prevsix": "npm run compile",
+    "vsix": "npm run compile && npx vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.5.4",
+    "eslint": "^9.8.0",
+    "@vscode/vsce": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0"
+  },
+  "keywords": [
+    "ets2",
+    "euro truck simulator",
+    "euro truck simulator 2",
+    "ats",
+    "american truck simulator",
+    "scs",
+    "scs script",
+    "sii",
+    "sui",
+    "mat",
+    "def",
+    "unit",
+    "manifest.sii",
+    "modding",
+    "truck",
+    "simulator",
+    "game modding",
+    "vscode",
+    "extension"
+  ],
+  "activationEvents": [
+    "onLanguage:scs",
+    "onCommand:scsTools.formatDocument"
+  ]
+}

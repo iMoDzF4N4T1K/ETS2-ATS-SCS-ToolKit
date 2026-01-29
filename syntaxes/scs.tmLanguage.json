@@ -1,0 +1,123 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "SCS Script",
+  "scopeName": "source.scs",
+  "patterns": [
+    {"include": "#comments"},
+    {"include": "#directives"},
+    {"include": "#header"},
+    {"include": "#colors"},
+    {"include": "#strings"},
+    {"include": "#numbers"},
+    {"include": "#booleans"},
+    {"include": "#keys"},
+    {"include": "#brackets"}
+  ],
+  "repository": {
+    "colors": {
+      "patterns": [
+        {
+          "name": "constant.other.color.hex.scs",
+          "match": "#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\\b"
+        },
+        {
+          "name": "constant.other.color.tuple.scs",
+          "begin": "\\(",
+          "end": "\\)",
+          "patterns": [
+            {"include": "#numbers"},
+            {"name": "punctuation.separator.comma.scs", "match": ","}
+          ]
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.scs",
+          "begin": "/\\*",
+          "end": "\\*/"
+        },
+        {
+          "name": "comment.line.double-slash.scs",
+          "begin": "//",
+          "end": "(?:\\n|$)"
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "name": "keyword.control.directive.scs",
+          "match": "\\B@(?:include|include_optional|import)\\b"
+        }
+      ]
+    },
+    "header": {
+      "patterns": [
+        {
+          "name": "keyword.control.header.scs",
+          "match": "\\bSiiNunit\\b"
+        }
+      ]
+    },
+    "colors": {
+      "patterns": [
+        {
+          "name": "constant.other.color.hex.scs",
+          "match": "#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\\b"
+        },
+        {
+          "name": "constant.other.color.tuple.scs",
+          "begin": "\\(",
+          "end": "\\)",
+          "patterns": [
+            {"include": "#numbers"},
+            {"name": "punctuation.separator.comma.scs", "match": ","}
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.scs",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {"name": "constant.character.escape.scs", "match": "\\\\."}
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {"name": "constant.numeric.floating-point.scs", "match": "(?:(?:\\b\\d+\\.\\d*|\\B\\.\\d+)(?:[Ee][-+]?\\d+)?)\\b"},
+        {"name": "constant.numeric.integer.scs", "match": "\\b(?:0x[0-9a-fA-F]+|\\d+)\\b"}
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {"name": "constant.language.boolean.scs", "match": "\\b(?:true|false)\\b"}
+      ]
+    },
+    "keys": {
+      "patterns": [
+        {
+          "name": "variable.other.key.scs",
+          "match": "\\b[A-Za-z_][\\w]*(?:\\[\\])?(?=\\s*:)"
+        },
+        {
+          "name": "punctuation.separator.key-value.scs",
+          "match": ":"
+        }
+      ]
+    },
+    "brackets": {
+      "patterns": [
+        {"name": "punctuation.section.braces.begin.scs", "match": "\\{"},
+        {"name": "punctuation.section.braces.end.scs", "match": "\\}"},
+        {"name": "punctuation.section.parens.begin.scs", "match": "\\("},
+        {"name": "punctuation.section.parens.end.scs", "match": "\\)"},
+        {"name": "punctuation.section.brackets.begin.scs", "match": "\\["},
+        {"name": "punctuation.section.brackets.end.scs", "match": "\\]"}
+      ]
+    }
+  }
+}
