@@ -20,9 +20,6 @@ Elle apporte une expérience d’édition **professionnelle**, stable et perform
 - `.sii`
 - `.sui`
 - `.mat`
-- `.tobj`
-- `.pmd`
-- `.pma`
 
 Aucune configuration utilisateur requise.
 
