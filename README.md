@@ -12,8 +12,7 @@ Elle apporte une expérience d’édition **professionnelle**, stable et perform
 - Support complet du langage **SCS Script**
 - Coloration automatique des clés, valeurs, chemins et structures
 - Fonctionne sur :
-  - `info.sii`
-  - `manifest.sii`
+  - `xxxx.sii`
   - `game.sii` (saves)
   - `xxxx.mat`
   -  `xxxx.sui`
