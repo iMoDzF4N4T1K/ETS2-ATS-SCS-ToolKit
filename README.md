@@ -15,6 +15,8 @@ Elle apporte une expérience d’édition **professionnelle**, stable et perform
   - `info.sii`
   - `manifest.sii`
   - `game.sii` (saves)
+  - `xxxx.mat`
+  -  `xxxx.sui`
 
 ### 📂 Formats supportés
 - `.sii`
